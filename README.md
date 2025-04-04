@@ -112,7 +112,7 @@ namespace SingletonAudioManager
 ```
 
 Audio
-```
+``` C#
 namespace Ejercicio_1_Singleton
 {
     class Audio
@@ -170,7 +170,7 @@ namespace Ejercicio_1_Singleton
 ---
 El código simula un sistema donde un sensor de sismos avisa a varias ciudades registradas cada vez que detecta un temblor.
 
-``` c#
+``` C#
 namespace Observer_sin_delegado
 {
     class Program
@@ -236,7 +236,7 @@ namespace Observer_sin_delegado
 ---
 El código simula un sistema donde un sensor de sismos avisa a varias ciudades registradas cada vez que detecta un temblor.
 
-``` c#
+``` C#
 namespace Observer_con_Delegado
 {
  
