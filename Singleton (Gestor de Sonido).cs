@@ -19,6 +19,6 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound()
     {
-        Debug.Log("Reproduciendo sonido...");
+        Debug.Log("🔊 Reproduciendo sonido...");
     }
 }
