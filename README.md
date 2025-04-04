@@ -32,3 +32,19 @@ Se implementa un método estático que permite acceder a la instancia. Este mét
 ***3. Método de Acceso Controlado***
 Se implementa un método estático que permite acceder a la instancia. Este método verifica si la instancia ya ha sido creada; si no es así, la crea.
 ![Captura de pantalla 2025-04-04 020623](https://github.com/user-attachments/assets/a0095189-4122-45e4-9261-274d1004cdec)
+
+## ¿Cómo funciona el patrón Observer?
+---
+Es un patrón de diseño que establece una relación de dependencia uno a muchos entre objetos, de tal manera que cuando un objeto (el sujeto) cambia su estado, todos sus dependientes (los observadores) son notificados y actualizados automáticamente. Este patrón es muy útil en situaciones donde un cambio en un objeto requiere que se actualicen otros objetos sin que estos estén acoplados entre sí.
+
+- Sujeto (Subject): Mantiene una lista de observadores y notifica cambios.
+- Observador (Observer): Interfaz que define el método de actualización que los observadores deben implementar.
+- Notificación: Cuando el estado del sujeto cambia, se notifica a todos los observadores registrados.
+
+## ¿Y en qué situaciones es útil?
+---
+**1. Interfaces gráficas:**  El patrón Observer permite que la vista se actualice automáticamente cuando el modelo de datos cambia, manteniendo sincronizada la información con su representación visual.
+**2. Sistemas basados en eventos:** Es útil para gestionar eventos como clics de botones o cambios de estado, permitiendo que distintas partes del sistema respondan sin estar directamente acopladas entre sí.
+**3. Notificaciones y mensajería:** Facilita la comunicación entre componentes al permitir que se registren para recibir actualizaciones, lo que resulta ideal en sistemas donde se deben enviar notificaciones a múltiples elementos.
+**4. Desarrollo de videojuegos:** Se emplea para manejar eventos como colisiones, movimientos de personajes o cambios en el estado del juego, lo que contribuye a una arquitectura modular y flexible.
+
