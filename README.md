@@ -61,13 +61,18 @@ Un delegado en C# es un tipo que representa referencias a métodos con una lista
 ## Diferencias en las Implementaciones de Patrones
 ---
 **- Patrones Creacionales**
+
 **Singleton:** Variaciones en la creación de la instancia (perezosa vs. ansiosa).
 **Factory Method:** Diferencias en la delegación de la creación de objetos
 
+
 **- Patrones Estructurales:**
+
 **Adapter:** Adaptación mediante herencia o composición.
 **Decorator:** Manejo de instancias y cadena de decoradores.
 
+
 **-Patrones de Comportamiento:**
+
 **Observer:** Gestión de notificaciones (sincronización vs. asincronización).
 **Strategy:** Selección y aplicación de estrategias.
