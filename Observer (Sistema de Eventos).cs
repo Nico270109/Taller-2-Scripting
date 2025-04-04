@@ -7,25 +7,18 @@ public class EventManager : MonoBehaviour
 
     public void ButtonClicked()
     {
-        Debug.Log("Botón presionado. Notificando observadores...");
+        Debug.Log("🟢 Evento activado: Botón presionado.");
         OnButtonPressed?.Invoke();
     }
 }
 
 public class ObserverExample : MonoBehaviour
 {
-    private void OnEnable()
-    {
-        EventManager.OnButtonPressed += RespondToEvent;
-    }
-
-    private void OnDisable()
-    {
-        EventManager.OnButtonPressed -= RespondToEvent;
-    }
+    private void OnEnable() => EventManager.OnButtonPressed += RespondToEvent;
+    private void OnDisable() => EventManager.OnButtonPressed -= RespondToEvent;
 
     private void RespondToEvent()
     {
-        Debug.Log("El observador ha detectado el evento.");
+        Debug.Log("🔔 Observador: Se detectó el evento.");
     }
 }
