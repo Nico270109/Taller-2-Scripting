@@ -23,14 +23,14 @@ public class PlayerMovement : MonoBehaviour
     {
         moveStrategy = new RunStrategy();
         UpdateStrategyText("Run");
-        Debug.Log("🏃 Cambiado a correr.");
+        Debug.Log("Cambiado a correr.");
     }
 
     public void SetWalk()
     {
         moveStrategy = new WalkStrategy();
         UpdateStrategyText("Walk");
-        Debug.Log("🚶 Cambiado a caminar.");
+        Debug.Log("Cambiado a caminar.");
     }
 
     private void UpdateStrategyText(string strategy)
