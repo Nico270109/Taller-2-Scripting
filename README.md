@@ -298,3 +298,51 @@ namespace Observer_con_Delegado
 ![Captura de pantalla 2025-04-04 055447](https://github.com/user-attachments/assets/9c06bcce-97f8-470c-9137-c4d1f590e9a9)
 
 
+
+## Ejercicio Unity
+---
+```C#
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    private IMoveStrategy moveStrategy;
+    [SerializeField] private TMP_Text strategyText; // Texto para mostrar la estrategia actual
+
+    private void Start()
+    {
+        moveStrategy = new WalkStrategy();
+        UpdateStrategyText("Walk");
+    }
+
+    private void Update()
+    {
+        moveStrategy.Move(transform);
+    }
+
+    public void SetRun()
+    {
+        moveStrategy = new RunStrategy();
+        UpdateStrategyText("Run");
+        Debug.Log("Cambiado a correr.");
+    }
+
+    public void SetWalk()
+    {
+        moveStrategy = new WalkStrategy();
+        UpdateStrategyText("Walk");
+        Debug.Log("Cambiado a caminar.");
+    }
+
+    private void UpdateStrategyText(string strategy)
+    {
+        if (strategyText != null)
+        {
+            strategyText.text = "Current Strategy: " + strategy;
+        }
+    }
+}
+```
