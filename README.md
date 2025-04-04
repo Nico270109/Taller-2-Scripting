@@ -21,6 +21,7 @@ Si una función usa una clase base, debe funcionar igual con cualquier subclase.
 El acoplamiento directo a implementaciones concretas dificulta los cambios.
 
 ## ¿Cómo asegura una única instancia?
+---
 El primer paso es declarar un constructor privado para evitar que otras clases instancien la clase directamente.
 ***1. Constructor privado*** 
 se crea un campo estático que almacenará la única instancia de la clase. Este campo es privado para evitar el acceso directo desde otras clases.
