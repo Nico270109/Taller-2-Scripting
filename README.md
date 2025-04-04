@@ -76,3 +76,225 @@ Un delegado en C# es un tipo que representa referencias a métodos con una lista
 
 **Observer:** Gestión de notificaciones (sincronización vs. asincronización).
 **Strategy:** Selección y aplicación de estrategias.
+
+# Ejemplos de Patrones
+---
+
+### Singleton
+---
+Asegurar que solo exista una instancia de la clase AudioManager que controla sonidos en una aplicación.
+
+Program
+``` C#
+namespace Ejercicio_1_Singleton
+{
+   using System;
+
+namespace SingletonAudioManager
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var audio = Audio.Instance;
+            audio.PlaySound("Taylor Swift");
+            audio.ToggleSFX();
+            audio.PlaySound("Ariana Grande");
+            audio.ToggleMusic();
+
+            var otroAudio = Audio.Instance;
+            Console.WriteLine("¿Es el mismo AudioManager?"  +  (audio == otroAudio));
+        }
+    }
+}
+
+}
+```
+
+Audio
+```
+namespace Ejercicio_1_Singleton
+{
+    class Audio
+    {
+  
+            private static Audio _instance;
+            private static readonly object _lock = new object();
+
+            private bool musicOn = true;
+            private bool sfxOn = true;
+
+            private Audio()
+            {
+                Console.WriteLine("Audio inicializado.");
+            }
+
+            public static Audio Instance
+            {
+                get
+                {
+                    lock (_lock)
+                    {
+                        if (_instance == null)
+                            _instance = new Audio();
+                        return _instance;
+                    }
+                }
+            }
+
+            public void ToggleMusic()
+            {
+                musicOn = !musicOn;
+                Console.WriteLine(musicOn ? "Música activada." : "Música desactivada.");
+            }
+
+            public void ToggleSFX()
+            {
+                sfxOn = !sfxOn;
+                Console.WriteLine(sfxOn ? "Efectos activados." : "Efectos desactivados.");
+            }
+
+            public void PlaySound(string soundName)
+            {
+                if (sfxOn)
+                    Console.WriteLine("Reproduciendo efecto:" + (soundName));
+                else
+                    Console.WriteLine("No se puede reproducir " + (soundName) + ", efectos desactivados.");
+            }
+        }
+}
+```
+![Captura de pantalla 2025-04-04 044600](https://github.com/user-attachments/assets/c31a72d8-807d-4ddf-8b60-116052898511)
+
+### Observer sin Delegado
+---
+El código simula un sistema donde un sensor de sismos avisa a varias ciudades registradas cada vez que detecta un temblor.
+
+``` c#
+namespace Observer_sin_delegado
+{
+    class Program
+    {
+            static void Main(string[] args)
+            {
+                // Crear el sensor
+                var sensor = new Sensor();
+
+                // Crear las ciudades y registrarlas
+                var ciudad1 = new Ciudad("Quito");
+                var ciudad2 = new Ciudad("Medellín");
+                sensor.Registrar(ciudad1);
+                sensor.Registrar(ciudad2);
+
+                // Simular un par de sismos
+                sensor.SimularSismo(4.2);
+                sensor.SimularSismo(7.5);
+            }
+    }
+
+        // La clase Sensor (el sujeto)
+        class Sensor
+        {
+            private List<Ciudad> ciudades = new List<Ciudad>();
+
+            public void Registrar(Ciudad ciudad)
+            {
+                ciudades.Add(ciudad);
+            }
+
+            public void SimularSismo(double magnitud)
+            {
+                Console.WriteLine("\n ¡Sismo detectado! Magnitud: " + (magnitud));
+                foreach (var ciudad in ciudades)
+                {
+                    ciudad.RecibirAviso(magnitud);
+                }
+            }
+        }
+
+        // La clase Ciudad (el observador)
+        class Ciudad
+        {
+            private string nombre;
+
+            public Ciudad(string nombre)
+            {
+                this.nombre = nombre;
+            }
+
+            public void RecibirAviso(double magnitud)
+            {
+                Console.WriteLine( "" + (nombre) + " recibe alerta: sismo de " + (magnitud) + " grados.");
+            }
+        }
+}
+
+```
+![Captura de pantalla 2025-04-04 052929](https://github.com/user-attachments/assets/ea8f1884-fdad-4e0a-aac8-b8a99e94e35e)
+
+## Observer con Delgado
+---
+El código simula un sistema donde un sensor de sismos avisa a varias ciudades registradas cada vez que detecta un temblor.
+
+``` c#
+namespace Observer_con_Delegado
+{
+ 
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                Sensor sensor = new Sensor();
+
+                Ciudad ciudad1 = new Ciudad("Pereira");
+                Ciudad ciudad2 = new Ciudad("Medellin");
+
+                // Suscribimos los métodos al evento
+                sensor.AlertaSismo += ciudad1.ResponderAlerta;
+                sensor.AlertaSismo += ciudad2.ResponderAlerta;
+
+                // Simulamos dos sismos
+                sensor.SimularSismo(5.1);
+                sensor.SimularSismo(8.3);
+            }
+        }
+
+        // Definimos un delegado para las alertas
+        public delegate void AlertaSismoDelegate(double magnitud);
+
+        class Sensor
+        {
+            // Evento basado en el delegado
+            public event AlertaSismoDelegate AlertaSismo;
+
+            public void SimularSismo(double magnitud)
+            {
+                Console.WriteLine("\n Sismo detectado con magnitud:" + (magnitud));
+
+                // Invocamos el evento si hay suscriptores
+                if (AlertaSismo != null)
+                {
+                    AlertaSismo(magnitud);
+                }
+            }
+        }
+
+        class Ciudad
+        {
+            private string nombre;
+
+            public Ciudad(string nombre)
+            {
+                this.nombre = nombre;
+            }
+
+            public void ResponderAlerta(double magnitud)
+            {
+                Console.WriteLine("" + nombre + " recibe alerta: sismo de " + magnitud + " grados.");
+            }
+        }
+}
+```
+![Captura de pantalla 2025-04-04 055447](https://github.com/user-attachments/assets/9c06bcce-97f8-470c-9137-c4d1f590e9a9)
+
+
