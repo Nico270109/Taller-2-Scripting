@@ -48,3 +48,26 @@ Es un patrón de diseño que establece una relación de dependencia uno a muchos
 **3. Notificaciones y mensajería:** Facilita la comunicación entre componentes al permitir que se registren para recibir actualizaciones, lo que resulta ideal en sistemas donde se deben enviar notificaciones a múltiples elementos.
 **4. Desarrollo de videojuegos:** Se emplea para manejar eventos como colisiones, movimientos de personajes o cambios en el estado del juego, lo que contribuye a una arquitectura modular y flexible.
 
+## ¿Qué es un antipatrón?
+---
+Un antipatrón es un enfoque o solución que, aunque puede parecer razonable en un principio, resulta ser ineficaz o contraproducente en la práctica. Los antipatrónes son patrones de diseño que se han identificado como problemáticos y que pueden llevar a un código difícil de mantener, poco eficiente o propenso a errores. Reconocer y evitar antipatrónes es fundamental para mejorar la calidad del software.
+
+## ¿Qué es un delegados?
+---
+Un delegado en C# es un tipo que representa referencias a métodos con una lista de parámetros y un tipo de retorno específicos. Los delegados permiten encapsular métodos, lo que significa que puedes pasar métodos como parámetros, almacenar métodos en variables y llamar a esos métodos de manera flexible.
+
+## Consulte un código o librería nativo de C# que use el patrón decorador
+---
+## Diferencias en las Implementaciones de Patrones
+---
+**- Patrones Creacionales**
+**Singleton:** Variaciones en la creación de la instancia (perezosa vs. ansiosa).
+**Factory Method:** Diferencias en la delegación de la creación de objetos
+
+**- Patrones Estructurales:**
+**Adapter:** Adaptación mediante herencia o composición.
+**Decorator:** Manejo de instancias y cadena de decoradores.
+
+**-Patrones de Comportamiento:**
+**Observer:** Gestión de notificaciones (sincronización vs. asincronización).
+**Strategy:** Selección y aplicación de estrategias.
