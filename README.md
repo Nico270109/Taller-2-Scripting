@@ -346,3 +346,26 @@ public class PlayerMovement : MonoBehaviour
     }
 }
 ```
+
+```c#
+using System;
+using System.IO;
+using System.CodeDom.Compiler;
+
+class Program
+{
+    static void Main()
+    {
+        using var sw = new StringWriter();
+        using var writer = new IndentedTextWriter(sw, "  ");
+
+        writer.WriteLine("Raíz:");
+        writer.Indent++;
+        writer.WriteLine("Hijo 1");
+        writer.WriteLine("Hijo 2");
+        writer.Indent--;
+
+        Console.WriteLine(sw.ToString());
+    }
+}
+```
