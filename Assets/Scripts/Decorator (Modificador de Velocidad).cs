@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class BaseSpeed : MonoBehaviour
 {
-    public virtual float GetSpeed() => 5f;
+    [SerializeField] private float baseSpeed = 5f;
+
+    public virtual float GetSpeed() => baseSpeed;
 }
 
 public class SpeedDecorator : BaseSpeed
@@ -16,9 +18,19 @@ public class SpeedDecorator : BaseSpeed
 
 public class Player : MonoBehaviour
 {
-    private BaseSpeed speed;
+    [SerializeField] private BaseSpeed speed; // Referencia a un componente BaseSpeed
 
-    private void Start() => speed = new BaseSpeed();
+    private void Start()
+    {
+        if (speed == null)
+        {
+            speed = GetComponent<BaseSpeed>();
+            if (speed == null)
+            {
+                Debug.LogError("No se encontró un componente BaseSpeed en el GameObject del Player.");
+            }
+        }
+    }
 
     public void IncreaseSpeed()
     {

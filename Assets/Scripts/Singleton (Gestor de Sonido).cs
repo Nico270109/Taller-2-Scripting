@@ -3,6 +3,8 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip soundClip;
 
     private void Awake()
     {
@@ -19,6 +21,15 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound()
     {
-        Debug.Log("🔊 Reproduciendo sonido...");
+        if (audioSource != null && soundClip != null)
+        {
+            audioSource.PlayOneShot(soundClip);
+            Debug.Log("Reproduciendo sonido...");
+        }
+        else
+        {
+                        Debug.Log("No se pudo encontrar sonido");
+
+        }
     }
 }
